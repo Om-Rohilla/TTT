@@ -1,0 +1,53 @@
+.plant-info-card {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 28rem; /* Keeping original width */
+  width: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem; /* Added to lift it up */
+  height: auto; /* Adjust height automatically */
+  max-height: calc(100vh - 400px); /* Prevent overflow */
+  overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.plant-info-card:hover {
+  transform: translateZ(20px) rotateY(-5deg);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.plant-info-card h2 {
+  font-size: 1.75rem;
+  font-weight: 800; /* Made bolder */
+  margin-bottom: 1rem;
+  color: var(--primary-green);
+  text-align: center;
+}
+
+.plant-info-card p {
+  margin-bottom: 0.8rem;
+  font-size: 1.125rem;
+  color: var(--primary-green); /* Darker text color */
+  font-weight: 600; /* Made bolder */
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.plant-info-card p strong {
+  font-weight: 800;
+  color: var(--primary-green);
+  display: block; /* Makes labels appear on separate line */
+  margin-bottom: 0.25rem;
+}
+
+/* Reduce blur when game is over */
+.game-area.game-over {
+  pointer-events: none;
+  opacity: 0.95;/* Reduced blur effect */
+}

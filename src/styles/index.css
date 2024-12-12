@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-green: #2D6A4F;
+  --secondary-green: #40916C;
+  --light-green: #74C69D;
+  --accent-green: #95D5B2;
+  --background-start: #B7E4C7;
+  --background-end: #D8F3DC;
+  --border-color: rgba(45, 106, 79, 0.3);
+  --winner-glow: 0 0 15px rgba(116, 198, 157, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--background-start), var(--background-end));
+  min-height: 100vh;
+  color: var(--primary-green);
+  overflow: hidden;
+}
+
+.game-container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+  perspective: 1000px;
+}
+
+.game-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+/* Enhanced Header Styles */
+.header-card {
+  width: 90%;
+  text-align: center;
+  margin-bottom: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 2rem;
+  padding: 0.2rem;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--border-color);
+}
+
+.game-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--primary-green);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.8rem;
+}
+
+.score-item {
+  padding: 1rem 3.5rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1.5rem;
+  transition: transform 0.3s;
+  border: 2px solid var(--border-color);
+  min-width: 180px;
+}
+
+.score-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.score-divider {
+  font-size: 2rem;
+  color: var(--primary-green);
+  font-weight: 700;
+}
+
+/* Enhanced Board Styles */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 2.9rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border: 3px solid var(--border-color);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.cell {
+  width: 9rem;
+  height: 9rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  border: 2px solid var(--border-color);
+}
+
+.cell:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translateZ(20px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Plant Info Styles */
+.plant-info-card {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 1.5rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border: 4px solid var(--border-color);
+  width: 800px;
+  text-align: left;
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+  margin-left: 4.8rem;
+  margin-bottom: 210px;
+}
+
+.plant-info-card h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--primary-green);
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.plant-info-card p {
+  margin-bottom: 1.25rem;
+  font-size: 1.25rem;
+  color: var(--secondary-green);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.plant-info-card p:hover {
+  transform: translateX(10px);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.plant-info-card strong {
+  color: var(--primary-green);
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+/* Updated Winner Message Styles */
+.winner-message {
+  position: fixed;
+  top: 35%;
+  left: 260px;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 3rem;
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  z-index: 50;
+  border: 3px solid var(--border-color);
+  width: auto;
+  min-width: 400px;
+}
+
+/* Updated Restart Button Styles */
+.restart-button {
+  margin-top: 2rem;
+  padding: 1rem 3rem;
+  background-color: var(--primary-green);
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: fixed;
+  bottom: 15%;
+  left: 260px;
+  transform: translate(-50%, 0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 51;
+}
+
+.restart-button:hover {
+  background-color: var(--secondary-green);
+  transform: translate(-50%, -5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.restart-button:active {
+  transform: translate(-50%, -2px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .game-area {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .plant-info-card {
+    margin-left: 0;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .winner-message,
+  .restart-button {
+    left: 50%;
+  }
+
+  .winner-message {
+    width: 90%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 2.5rem;
+  }
+
+  .cell {
+    width: 6rem;
+    height: 6rem;
+    font-size: 2.5rem;
+  }
+
+  .score-board {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .score-item {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .winner-message {
+    font-size: 1.2rem;
+    padding: 2rem;
+  }
+
+  .restart-button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    bottom: 10%;
+  }
+}
